@@ -1,6 +1,12 @@
-# todolist
+# ToDoListApp
 
-## Project setup
+## Presentation 
+
+>This is a ToDo list application in vue.js for our mobile application classes.
+
+## How to use 
+
+### Project setup
 ```
 npm install
 ```
