@@ -1,5 +1,11 @@
 # ToDoListApp
 
+1. [Presentation](#presentation)
+2. [Authors](#authors)
+3. [How to use](#how-to-use)
+4. [Bonus features](#bonus-features)
+5. [Links](#links)
+
 ## Presentation 
 
 >This is a ToDo list application in vue.js for our mobile application classes.
@@ -21,5 +27,13 @@
 `npm run build`<br>
 - Lints and fixes files<br>
 `npm run lint`<br>
-- Customize configuration<br>
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
+## Bonus features
+
+-
+-
+-
+
+## Links
+
+Customize configuration : [Configuration Reference](https://cli.vuejs.org/config/).
