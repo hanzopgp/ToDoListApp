@@ -36,4 +36,4 @@
 
 ## Links
 
-Customize configuration : [Configuration Reference](https://cli.vuejs.org/config/).
+Customize vuejs configuration : [Configuration Reference](https://cli.vuejs.org/config/).
