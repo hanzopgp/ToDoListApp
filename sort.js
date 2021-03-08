@@ -1,3 +1,0 @@
-function sortTable(n, tableNumber) {
-    
-  }
