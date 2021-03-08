@@ -4,6 +4,13 @@
 
 >This is a ToDo list application in vue.js for our mobile application classes.
 
+## Authors
+
+- 21510242 Durand Enzo
+- 21810620 Tiem Hugo
+- 21805697 Gignoux Thomas
+- 21806934 Berson Axel
+
 ## How to use 
 
 - Project setup<br>
@@ -14,5 +21,5 @@
 `npm run build`<br>
 - Lints and fixes files<br>
 `npm run lint`<br>
-- Customize configuration
+- Customize configuration<br>
 See [Configuration Reference](https://cli.vuejs.org/config/).
