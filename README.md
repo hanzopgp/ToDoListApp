@@ -6,25 +6,13 @@
 
 ## How to use 
 
-### Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
+- Project setup<br>
+`npm install`<br>
+- Compiles and hot-reloads for development<br>
+`npm run serve`<br>
+- Compiles and minifies for production<br>
+`npm run build`<br>
+- Lints and fixes files<br>
+`npm run lint`<br>
+- Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
