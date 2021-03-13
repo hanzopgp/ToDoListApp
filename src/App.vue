@@ -1,17 +1,21 @@
 <template>
-  <div id="app">
-    <home></home>
+<h1>TodoList</h1>
+  <div id="nav">
+    <router-link to="/">HOME</router-link>
+    <br>
+    <router-link to="/login">LOGIN</router-link>
   </div>
+  <router-view/>
 </template>
 
 <script>
-import Home from '@/view/Home.vue';
+
 
 
 export default {
   name: 'App',
   components: {
-    Home,
+    
   }
 }
 </script>
