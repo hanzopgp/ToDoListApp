@@ -6,11 +6,12 @@ export function addTodo(state, name){
   });
 }
 
-export function addTodolist(state, name){
-  state.todolists.push({
-    name: name,
-    todolist: [],
-  })
+export function setTodos(state, todos) {
+  state.todos = todos;
+}
+
+export function setTodolists(state, todolists){
+  state.todolists = todolists;
 }
 
 export function deleteTodo(state, todo){

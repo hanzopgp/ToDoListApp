@@ -1,5 +1,5 @@
 export default function () {
   return {
-    token: '',
+    token: localStorage.getItem('token') || null,
   };
 }

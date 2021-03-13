@@ -6,8 +6,8 @@
         <label>Ajouter</label>
       </div>
     </li>
-    <li v-for="todo in this.getTodolist(getCurrent)" :key="todo.id">
-      <input type="checkbox" v-model="todo.completed" :name="todo.name"> 
+    <li v-for="todo in this.getTodolist" :key="todo.id">
+      <input type="checkbox" v-model="todo.completed" :checked="todo.completed" :name="todo.name"> 
       <label :for="todo.name"> {{todo.name}}</label>
       <div @click="deleteTodo(todo)" class="btn delete-btn">
         <label>Supprimer</label>
@@ -37,27 +37,14 @@ export default {
   },
 
   methods: {
-    // add: function () {
-    //   if(this.newTodo != ''){
-    //     this.todos.push({
-    //       id: this.todos.length+1,
-    //       name: this.newTodo,
-    //       completed: false,
-    //     });
-    //     this.newTodo = '';
-    //   }
-    // },
-
-    // deleted: function (todo) {
-    //   this.todos.splice(this.todos.indexOf(todo), 1);
-    // }
+    
     add: function () {
       if(this.newTodo != ''){
         this.fetchTodo(this.newTodo);
         this.newTodo = '';
       }
     },
-    ...mapActions("todolists", ["fetchTodo", "deleteTodo"]),
+    ...mapActions("todolist", ["fetchTodo", "deleteTodo"]),
   },
 
   props: {

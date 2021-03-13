@@ -2,9 +2,8 @@ export const getTodolists = (state) => {
   return state.todolists;
 }
 
-export const getTodolist = (state) => (index) => {
-  return state.todolists[index].todolist;
-  
+export const getTodolist = (state) => {
+  return state.todos;
 }
 
 export const getCurrent = (state) => {

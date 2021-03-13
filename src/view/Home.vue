@@ -8,7 +8,7 @@
 <script>
 // @ is an alias to /src
 import TodoList from '@/components/TodoList.vue';
-import Sidebar from '../components/sidebar.vue';
+import Sidebar from '@/components/sidebar.vue';
 
 export default {
   name: 'Home',
@@ -21,7 +21,8 @@ export default {
     return {
       
     }
-  }
+  },
+
 }
 </script>
 

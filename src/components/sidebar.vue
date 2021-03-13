@@ -1,7 +1,8 @@
 <template>
   <ul id="list">
-    <li v-for="todolist in getTodolists" :key="todolist.name">
-      <label for="">{{todolist.name}}</label>
+    {{ getCurrent }}
+    <li class="nav" v-for="todolist in getTodolists" :key="todolist.id" @click="fetchTodos(todolist.todos)">
+      <label>{{todolist.name}}</label>
 
     </li>
     <li>
@@ -30,11 +31,15 @@ export default {
         this.name = '';
       }
     },
-    ...mapActions("todolist", ["addTodolist"]),
+    ...mapActions("todolist", ["addTodolist", "fetchTodolist", "setCurrent", "fetchTodos"]),
+  },
+
+  mounted() {
+    this.fetchTodolist();
   },
 
   computed: {
-    ...mapGetters("todolist", ["getTodolists"]),
+    ...mapGetters("todolist", ["getTodolists", "getCurrent"]),
   }
 }
 </script>
@@ -42,5 +47,19 @@ export default {
 <style>
   #list {
     max-width: 20%;
+  }
+
+  .nav {
+    padding: 10px;
+    text-align: center;
+  }
+
+  .nav:hover {
+    background: rgb(247, 247, 247);
+    cursor: pointer;
+  }
+
+  .nav label:hover {
+    cursor: pointer;
   }
 </style>
