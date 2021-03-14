@@ -70,7 +70,7 @@ export default {
     },
     async toRegister() {
       if(this.signUp.name != '' && this.signUp.email != '' && this.signUp.password != ''){
-        await this.register(this.loginId);
+        await this.register(this.signUp);
       }
     }
   },

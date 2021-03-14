@@ -5,13 +5,9 @@
       <div @click="createTodo({name: this.newTodo, completed: 0, todolist_id: this.getCurrent})" class="btn">
         <label>Ajouter</label>
       </div>
-    </li>
+    </li> 
     <li v-for="todo in this.getTodolist" :key="todo.id">
-      <input type="checkbox" v-model="todo.completed" :checked="todo.completed" :name="todo.name"> 
-      <label :for="todo.name"> {{todo.name}}</label>
-      <div @click="deleteTodo(todo)" class="btn delete-btn">
-        <label>Supprimer</label>
-      </div>
+      <todo :todo="todo"></todo>
     </li>
   </ul>
  
@@ -21,12 +17,13 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'; 
+import Todo from './Todo';
 
 export default {
  
   name: 'TodoList',
   components: {
-
+    Todo,
   },
 
   data() {
@@ -44,11 +41,11 @@ export default {
         this.newTodo = '';
       }
     },
-    ...mapActions("todolist", ["fetchTodo", "deleteTodo", "createTodo"]),
+    ...mapActions("todolist", ["fetchTodo", "deleteTodo", "createTodo", "setCompleted"]),
   },
 
-  props: {
-    
+  watch: {
+    isCompleted: function () {}
   },
 
   computed:{
