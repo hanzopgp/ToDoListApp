@@ -25,8 +25,17 @@ export function register({commit}, id) {
   const email = id.email;
   const password = id.password;
   axios.post("http://138.68.74.39/api/register", {name: name, email: email, password: password}).then((response) => {
-    commit("setToken", );
-  console.log(response);
+    const token = response.data.token;
+    localStorage.setItem('token', token);
+    axios.interceptors.request.use(function (config) {
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
+      return config;
+    }),
+    commit("setToken", token);
+    router.push("/"); 
+  // console.log(response);
   }).catch((err) => {
     console.log(err);
   })

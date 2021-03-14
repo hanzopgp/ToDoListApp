@@ -9,7 +9,7 @@ export async function fetchTodos({commit}, todolist) {
   const todos = todolist.todos;
   const current = todolist.id;
   
-  commit("setTodos", todos);
+  commit("setTodos", todos); 
   commit("setCurrent", current);
 }
 
@@ -50,12 +50,38 @@ export async function createTodo({commit}, todo) {
   });
 }
 
-export function deleteTodo({commit}, todo) {
-  commit("deleteTodo", todo);
+export async function setCompleted({commit}, todo) {
+  const name = todo.name;
+  const completed = todo.completed;
+  const todolist_id = todo.todolist_id;
+
+  const todo_id = todo.id;
+
+  await axios.post(`http://138.68.74.39/api/completeTodo/${todo_id}`, {name: name, completed: completed, todolist_id: todolist_id}).then((response) => {
+    console.log(response.data);
+    commit('setCompleted', response.data);   
+  }).catch((err) => {
+    console.log(err);
+  });
 }
 
-export function addTodolist({commit}, name) {
-  commit("addTodolist", name);
+export async function modifyTodo({commit}, todo) {
+  const name = todo.name;
+  const completed = todo.completed;
+  const todolist_id = todo.todolist_id;
+
+  const todo_id = todo.id;
+
+  await axios.patch(`http://138.68.74.39/api/todo/${todo_id}`, {name: name, completed: completed, todolist_id: todolist_id}).then((response) => {
+    console.log(response.data);
+    commit('setName', response.data);
+  }).catch((err) => {
+    console.log(err);
+  });
+}
+
+export function deleteTodo({commit}, todo) {
+  commit("deleteTodo", todo);
 }
 
 export function setCurrent({commit}, current) {

@@ -3,7 +3,11 @@ export function addTodos(state, todo){
 }
 
 export function setTodos(state, todos) {
+  if(todos == undefined) {
+    todos = [];
+  }
   state.todos = todos;
+  
 }
 
 export function setTodolists(state, todolists){
@@ -12,6 +16,17 @@ export function setTodolists(state, todolists){
 
 export function addTodolist(state, todolist) {
   state.todolists.push(todolist);
+}
+
+export function setCompleted(state, todo_data) {
+  const todo = state.todos.find(todo => todo.id == todo_data.id);
+  console.log(todo);
+  todo.completed = todo_data.completed;
+}
+
+export function setName(state, todo_data) {
+  const todo = state.todos.find(todo => todo.id == todo_data.id);
+  todo.name = todo_data.name;
 }
 
 export function deleteTodo(state, todo){

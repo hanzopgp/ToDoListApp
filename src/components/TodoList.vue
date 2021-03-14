@@ -1,17 +1,13 @@
 <template>
   <ul id="todolist">
     <li>
-      <input type="text" name="newTodo" id="newTodo" v-model="newTodo" placeholder="Ex: Aller faire le projet d'App Mobile.">
+      <input type="text" name="newTodo" class="newTodo" v-model="newTodo" placeholder="Ex: Aller faire le projet d'App Mobile.">
       <div @click="createTodo({name: this.newTodo, completed: 0, todolist_id: this.getCurrent})" class="btn">
         <label>Ajouter</label>
       </div>
-    </li>
+    </li> 
     <li v-for="todo in this.getTodolist" :key="todo.id">
-      <input type="checkbox" v-model="todo.completed" :checked="todo.completed" :name="todo.name"> 
-      <label :for="todo.name"> {{todo.name}}</label>
-      <div @click="deleteTodo(todo)" class="btn delete-btn">
-        <label>Supprimer</label>
-      </div>
+      <todo :todo="todo"></todo>
     </li>
   </ul>
  
@@ -21,12 +17,13 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'; 
+import Todo from './Todo';
 
 export default {
  
   name: 'TodoList',
   components: {
-
+    Todo,
   },
 
   data() {
@@ -44,11 +41,11 @@ export default {
         this.newTodo = '';
       }
     },
-    ...mapActions("todolist", ["fetchTodo", "deleteTodo", "createTodo"]),
+    ...mapActions("todolist", ["fetchTodo", "deleteTodo", "createTodo", "setCompleted"]),
   },
 
-  props: {
-    
+  watch: {
+    isCompleted: function () {}
   },
 
   computed:{
@@ -70,7 +67,7 @@ export default {
     border-bottom: 1px rgb(212, 212, 212) solid;
   }
   
-  #newTodo {
+  .newTodo {
     width: 100%;
     border: none;
   }
@@ -84,17 +81,20 @@ export default {
     cursor: pointer;
     border-radius: 5px;
     padding: 5px;
+    transition-property: background, color;
+    transition-duration: .2s;
   }
 
-  .delete-btn {
-    background: rgb(255, 135, 135);
+  .modify-btn {
+    background: rgb(255, 213, 159);
     color: white;
+    
   }
 
-  .delete-btn:hover{
-    background: red;
+  .modify-btn:hover{
+    background: rgb(255, 166, 0);
   }
-
+  
   .btn label {
     cursor: pointer;
     width: 100%;

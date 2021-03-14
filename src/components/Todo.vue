@@ -1,8 +1,12 @@
 <template>
-  <input type="checkbox" v-model="completed" :name="todo.name"> 
-    <label :for="todo.name"> {{todo.name}}</label>
-    <div @click="deleteTodo(todo)" class="btn delete-btn">
-      <label>Supprimer</label>
+    <input type="checkbox" v-model="completed" :name="todo.name" v-if="!isModifying"> 
+    <label :for="todo.name" v-if="!isModifying">{{todo.name}}</label>
+    <input type="text" name="modify" v-model="newName" v-else class="newTodo">
+    <div @click="toModify()" class="btn modify-btn" v-if="!isModifying">
+      <label>Modifier</label>
+    </div>
+    <div class="btn valid-btn" v-else @click="modify">
+      <label>Valider</label>
     </div>
 </template>
 
@@ -19,6 +23,8 @@ export default {
   data () {
     return {
       completed: Boolean(this.todo.completed),
+      isModifying: false,
+      newName: this.todo.name,
     }
   },
 
@@ -34,11 +40,28 @@ export default {
       };
       // console.log("fonction setCompleted va etre exectuté");
       this.setCompleted(data);
-    }
+    },
   },
 
   methods: {
-    ...mapActions("todolist", ['setCompleted']),
+    ...mapActions("todolist", ['setCompleted', 'modifyTodo']),
+
+    toModify: function () {
+      this.isModifying = !this.isModifying;
+    },
+
+    modify: async function () {
+      const data = {
+        name: this.newName,
+        completed: this.todo.completed,
+        id: this.todo.id,
+        todolist_id: this.getCurrent,
+      };
+
+      await this.modifyTodo(data).then(() => { 
+        this.toModify();
+      });
+    }
   },
 
   computed: {
@@ -48,5 +71,12 @@ export default {
 </script>
 
 <style>
+  .valid-btn {
+    background: rgb(182, 255, 182);
+  }
 
+  .valid-btn:hover {
+    background: rgb(0, 202, 0);
+    color:white;
+  }
 </style>
