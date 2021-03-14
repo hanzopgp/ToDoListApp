@@ -2,7 +2,7 @@
   <ul id="todolist">
     <li>
       <input type="text" name="newTodo" id="newTodo" v-model="newTodo" placeholder="Ex: Aller faire le projet d'App Mobile.">
-      <div @click="add" class="btn">
+      <div @click="createTodo({name: this.newTodo, completed: 0, todolist_id: this.getCurrent})" class="btn">
         <label>Ajouter</label>
       </div>
     </li>
@@ -44,7 +44,7 @@ export default {
         this.newTodo = '';
       }
     },
-    ...mapActions("todolist", ["fetchTodo", "deleteTodo"]),
+    ...mapActions("todolist", ["fetchTodo", "deleteTodo", "createTodo"]),
   },
 
   props: {

@@ -1,13 +1,12 @@
 <template>
   <ul id="list">
     {{ getCurrent }}
-    <li class="nav" v-for="todolist in getTodolists" :key="todolist.id" @click="fetchTodos(todolist.todos)">
+    <li class="nav" v-for="todolist in getTodolists" :key="todolist.id" @click="fetchTodos(todolist)">
       <label>{{todolist.name}}</label>
-
     </li>
     <li>
-      <input type="text" v-model="name">
-      <input type="button" value="Ajouter" @click="add">
+      <input type="text" v-model="this.name">
+      <input type="button" value="Ajouter" @click="createTodolist(this.name)">
     </li>
   </ul>
 </template>
@@ -31,7 +30,8 @@ export default {
         this.name = '';
       }
     },
-    ...mapActions("todolist", ["addTodolist", "fetchTodolist", "setCurrent", "fetchTodos"]),
+
+    ...mapActions("todolist", ["fetchTodolist", "fetchTodos", "createTodolist"]),
   },
 
   mounted() {

@@ -1,9 +1,5 @@
-export function addTodo(state, name){
-  state.todolist.push({
-    id: state.todolist.length+1,
-    name: name, 
-    completed: false,
-  });
+export function addTodos(state, todo){
+  state.todos.push(todo);
 }
 
 export function setTodos(state, todos) {
@@ -12,6 +8,10 @@ export function setTodos(state, todos) {
 
 export function setTodolists(state, todolists){
   state.todolists = todolists;
+}
+
+export function addTodolist(state, todolist) {
+  state.todolists.push(todolist);
 }
 
 export function deleteTodo(state, todo){
