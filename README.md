@@ -13,8 +13,6 @@
 
 ## Project architecture
 
-## Project architecture
-
 <pre><code>
 CalcANTLR/
 ├── Project/
