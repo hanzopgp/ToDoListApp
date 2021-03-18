@@ -2,7 +2,7 @@
   <ul id="todolist">
     <li>
       <input type="text" name="newTodo" class="newTodo" v-model="newTodo" placeholder="Ex: Aller faire le projet d'App Mobile.">
-      <div @click="createTodo({name: this.newTodo, completed: 0, todolist_id: this.getCurrent})" class="btn">
+      <div @click="add" class="btn">
         <label>Ajouter</label>
       </div>
     </li> 
@@ -37,11 +37,15 @@ export default {
     
     add: function () {
       if(this.newTodo != ''){
-        this.fetchTodo(this.newTodo);
+        this.createTodo({
+          name: this.newTodo, 
+          completed: 0, 
+          todolist_id: this.getCurrent
+        });
         this.newTodo = '';
       }
     },
-    ...mapActions("todolist", ["fetchTodo", "deleteTodo", "createTodo", "setCompleted"]),
+    ...mapActions("todolist", ["fetchTodo", "createTodo", "setCompleted"]),
   },
 
   watch: {

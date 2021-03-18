@@ -3,10 +3,14 @@
     {{ getCurrent }}
     <li class="nav" v-for="todolist in getTodolists" :key="todolist.id" @click="fetchTodos(todolist)">
       <label>{{todolist.name}}</label>
+      <div class="btn delete-btn" @click="this.deleteTodolist(todolist.id)">
+        <span></span>
+        <span id="span-mirror"></span>
+      </div>
     </li>
     <li>
       <input type="text" v-model="this.name">
-      <input type="button" value="Ajouter" @click="createTodolist(this.name)">
+      <input type="button" value="Ajouter" @click="add">
     </li>
   </ul>
 </template>
@@ -24,14 +28,16 @@ export default {
   },
 
   methods: {
-    add: function () {
+    add: async function () {
       if(this.name != ''){
-        this.addTodolist(this.name);
-        this.name = '';
+        await this.createTodolist(this.name).then(() => {
+          this.name = '';
+          console.log(this.name)
+        });
       }
     },
 
-    ...mapActions("todolist", ["fetchTodolist", "fetchTodos", "createTodolist"]),
+    ...mapActions("todolist", ["fetchTodolist", "fetchTodos", "createTodolist", "deleteTodolist"]),
   },
 
   mounted() {

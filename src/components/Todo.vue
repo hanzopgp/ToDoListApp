@@ -2,8 +2,14 @@
     <input type="checkbox" v-model="completed" :name="todo.name" v-if="!isModifying"> 
     <label :for="todo.name" v-if="!isModifying">{{todo.name}}</label>
     <input type="text" name="modify" v-model="newName" v-else class="newTodo">
-    <div @click="toModify()" class="btn modify-btn" v-if="!isModifying">
-      <label>Modifier</label>
+    <div v-if="!isModifying" class="btns">
+      <div @click="toModify()" class="btn modify-btn">
+        <label>Modifier</label>
+      </div>
+      <div class="btn delete-btn" @click="deleteTodo(todo.id)">
+        <span></span>
+        <span id="span-mirror"></span>
+      </div>
     </div>
     <div class="btn valid-btn" v-else @click="modify">
       <label>Valider</label>
@@ -44,7 +50,7 @@ export default {
   },
 
   methods: {
-    ...mapActions("todolist", ['setCompleted', 'modifyTodo']),
+    ...mapActions("todolist", ['setCompleted', 'modifyTodo', 'deleteTodo']),
 
     toModify: function () {
       this.isModifying = !this.isModifying;
@@ -61,7 +67,7 @@ export default {
       await this.modifyTodo(data).then(() => { 
         this.toModify();
       });
-    }
+    },
   },
 
   computed: {
@@ -71,6 +77,33 @@ export default {
 </script>
 
 <style>
+  .btns {
+    display: flex;
+  }
+
+  .delete-btn {
+    width: auto !important;
+    position: relative;
+    margin-right: 10px;
+  }
+
+
+  .delete-btn span {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    transform: rotate(45deg);
+    display: block;
+    height: 2px;
+    width: 20px;
+    background: grey;
+  }
+
+  #span-mirror {
+    transform: rotate(-45deg);
+  }
+
   .valid-btn {
     background: rgb(182, 255, 182);
   }

@@ -29,8 +29,14 @@ export function setName(state, todo_data) {
   todo.name = todo_data.name;
 }
 
-export function deleteTodo(state, todo){
-  state.todolist.splice(state.todolist.indexOf(todo), 1);
+export function deleteTodolist(state, id){
+  const todolist =  state.todolists.find(todolist => todolist.id == id);
+  state.todolists.splice(state.todolists.indexOf(todolist), 1);
+}
+
+export function deleteTodo(state, id) {
+  const todo = state.todos.find(todo => todo.id == id);
+  state.todos.splice(state.todos.indexOf(todo), 1);
 }
 
 export function setCurrent(state, index) {

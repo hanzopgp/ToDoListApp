@@ -1,4 +1,5 @@
 import axios from 'axios';
+import router from '@/router';
 
 export async function fetchTodos({commit}, todolist) {
   // await axios.get("http://138.68.74.39/api/todos", todo.id).then((response) => {
@@ -18,7 +19,10 @@ export async function fetchTodolist({commit}) {
     commit("setTodolists", response.data);
     console.log(response.data);
   }).catch((err) => {
-    console.log(err);
+    const code = err.response.status;
+    if(code == 401) {
+      router.push("login");
+    }
   });
 }
 
@@ -80,8 +84,29 @@ export async function modifyTodo({commit}, todo) {
   });
 }
 
-export function deleteTodo({commit}, todo) {
-  commit("deleteTodo", todo);
+export async function deleteTodolist({commit}, id) {
+  console.log("on est dans del");
+  const todolist_id = id;
+
+  await axios.delete(`http://138.68.74.39/api/todolist/${todolist_id}`).then((response) => {
+    console.log(response.data);
+    commit("deleteTodolist", todolist_id);
+  }).catch((err) => {
+    console.log(err);
+  });
+
+
+}
+
+export async function deleteTodo({commit}, id) {
+  const todo_id = id;
+
+  await axios.delete(`http://138.68.74.39/api/todo/${todo_id}`).then((response) => {
+    console.log(response.data);
+    commit("deleteTodo", todo_id);
+  }).catch((err) => {
+    console.log(err);
+  });
 }
 
 export function setCurrent({commit}, current) {
