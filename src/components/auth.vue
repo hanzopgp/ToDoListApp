@@ -70,7 +70,11 @@ export default {
     },
     async toRegister() {
       if(this.signUp.name != '' && this.signUp.email != '' && this.signUp.password != ''){
+<<<<<<< HEAD
         await this.register(this.loginId);
+=======
+        await this.register(this.signUp);
+>>>>>>> f52d71de74329fc739f2a17141d070ab9b9f87b9
       }
     }
   },

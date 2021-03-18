@@ -1,5 +1,6 @@
 export default function () {
   return {
+<<<<<<< HEAD
     todolists: [
       {
         name: "1ere todolist",
@@ -17,6 +18,10 @@ export default function () {
         ],
       }
     ],
+=======
+    todolists: [],
+    todos: [],
+>>>>>>> f52d71de74329fc739f2a17141d070ab9b9f87b9
     current: 0,
   };
 }
