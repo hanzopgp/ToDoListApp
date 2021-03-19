@@ -1,22 +1,3 @@
-<<<<<<< HEAD
-export function addTodo(state, name){
-  state.todolist.push({
-    id: state.todolist.length+1,
-    name: name, 
-    completed: false,
-  });
-}
-
-export function setTodolists(state, name){
-  state.todolists.push({
-    name: name,
-    todolist: [],
-  })
-}
-
-export function deleteTodo(state, todo){
-  state.todolist.splice(state.todolist.indexOf(todo), 1);
-=======
 export function addTodos(state, todo){
   state.todos.push(todo);
 }
@@ -56,9 +37,12 @@ export function deleteTodolist(state, id){
 export function deleteTodo(state, id) {
   const todo = state.todos.find(todo => todo.id == id);
   state.todos.splice(state.todos.indexOf(todo), 1);
->>>>>>> f52d71de74329fc739f2a17141d070ab9b9f87b9
 }
 
 export function setCurrent(state, index) {
   state.current = index;
+}
+
+export function setFilter(state, type) {
+  state.filter = type;
 }

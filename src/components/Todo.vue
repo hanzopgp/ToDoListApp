@@ -1,19 +1,19 @@
-<template>
-    <input type="checkbox" v-model="completed" :name="todo.name" v-if="!isModifying"> 
-    <label :for="todo.name" v-if="!isModifying">{{todo.name}}</label>
-    <input type="text" name="modify" v-model="newName" v-else class="newTodo">
-    <div v-if="!isModifying" class="btns">
-      <div @click="toModify()" class="btn modify-btn">
-        <label>Modifier</label>
-      </div>
-      <div class="btn delete-btn" @click="deleteTodo(todo.id)">
-        <span></span>
-        <span id="span-mirror"></span>
-      </div>
+<template >
+  <input type="checkbox" v-model="completed" :name="todo.name" v-if="!isModifying"> 
+  <label :for="todo.name" v-if="!isModifying">{{todo.name}}</label>
+  <input type="text" name="modify" v-model="newName" v-else class="newTodo">
+  <div v-if="!isModifying" class="btns">
+    <div @click="toModify()" class="btn modify-btn">
+      <label>Modifier</label>
     </div>
-    <div class="btn valid-btn" v-else @click="modify">
-      <label>Valider</label>
+    <div class="btn delete-btn" @click="deleteTodo(todo.id)">
+      <span></span>
+      <span id="span-mirror"></span>
     </div>
+  </div>
+  <div class="btn valid-btn" v-else @click="modify">
+    <label>Valider</label>
+  </div>
 </template>
 
 <script>
@@ -31,6 +31,7 @@ export default {
       completed: Boolean(this.todo.completed),
       isModifying: false,
       newName: this.todo.name,
+      
     }
   },
 
@@ -47,6 +48,7 @@ export default {
       // console.log("fonction setCompleted va etre exectuté");
       this.setCompleted(data);
     },
+
   },
 
   methods: {
@@ -71,7 +73,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters('todolist', ["getCurrent"]),
+    ...mapGetters('todolist', ["getCurrent", "getFilter"]),
   }
 }
 </script>

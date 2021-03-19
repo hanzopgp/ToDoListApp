@@ -1,14 +1,4 @@
 import axios from 'axios';
-<<<<<<< HEAD
-
-export async function fetchTodo({commit}, todo) {
-  await axios.get("http://138.68.74.39/api/todos", todo.id).then((response) => {
-    commit("addTodo", response.data);
-  }).catch((err) => {
-    console.log(err);
-  });
-=======
-import router from '@/router';
 
 export async function fetchTodos({commit}, todolist) {
   // await axios.get("http://138.68.74.39/api/todos", todo.id).then((response) => {
@@ -21,31 +11,15 @@ export async function fetchTodos({commit}, todolist) {
   
   commit("setTodos", todos); 
   commit("setCurrent", current);
->>>>>>> f52d71de74329fc739f2a17141d070ab9b9f87b9
 }
 
 export async function fetchTodolist({commit}) {
   await axios.get("http://138.68.74.39/api/todolists").then((response) => {
     commit("setTodolists", response.data);
-<<<<<<< HEAD
-  }).catch((err) => {
-    console.log(err);
-  });
-}
-
-export function deleteTodo({commit}, todo) {
-  commit("deleteTodo", todo);
-}
-
-export function addTodolist({commit}, name) {
-  commit("addTodolist", name);
-=======
     console.log(response.data);
   }).catch((err) => {
     const code = err.response.status;
-    if(code == 401) {
-      router.push("login");
-    }
+    console.log(code);
   });
 }
 
@@ -132,7 +106,10 @@ export async function deleteTodo({commit}, id) {
   });
 }
 
+export function setFilter({commit}, type) {
+  commit('setFilter', type);
+}
+
 export function setCurrent({commit}, current) {
   commit("setCurrent", current);
->>>>>>> f52d71de74329fc739f2a17141d070ab9b9f87b9
 }

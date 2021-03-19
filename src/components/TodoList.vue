@@ -1,23 +1,26 @@
 <template>
   <ul id="todolist">
+    <div id="filter">
+      <div class="btn" v-on:click="setFilter('todo')">
+        <label>Todo</label>
+      </div>
+      <div class="btn" v-on:click="setFilter('done')">
+        <label>Done</label>
+      </div>
+      <div class="btn" v-on:click="setFilter('all')">
+        <label>All</label>
+      </div>
+      
+      <div></div>
+    </div>
     <li>
       <input type="text" name="newTodo" class="newTodo" v-model="newTodo" placeholder="Ex: Aller faire le projet d'App Mobile.">
       <div @click="add" class="btn">
         <label>Ajouter</label>
       </div>
-<<<<<<< HEAD
-    </li>
-    <li v-for="todo in this.getTodolist(getCurrent)" :key="todo.id">
-      <input type="checkbox" v-model="todo.completed" :name="todo.name"> 
-      <label :for="todo.name"> {{todo.name}}</label>
-      <div @click="deleteTodo(todo)" class="btn delete-btn">
-        <label>Supprimer</label>
-      </div>
-=======
     </li> 
-    <li v-for="todo in this.getTodolist" :key="todo.id">
+    <li v-for="todo in this.filter" :key="todo.id">
       <todo :todo="todo"></todo>
->>>>>>> f52d71de74329fc739f2a17141d070ab9b9f87b9
     </li>
   </ul>
  
@@ -27,10 +30,7 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'; 
-<<<<<<< HEAD
-=======
 import Todo from './Todo';
->>>>>>> f52d71de74329fc739f2a17141d070ab9b9f87b9
 
 export default {
  
@@ -42,7 +42,6 @@ export default {
   data() {
     return {
       newTodo: '',
-      filter: 'all',
     }
   },
 
@@ -50,17 +49,6 @@ export default {
     
     add: function () {
       if(this.newTodo != ''){
-<<<<<<< HEAD
-        this.fetchTodo(this.newTodo);
-        this.newTodo = '';
-      }
-    },
-    ...mapActions("todolist", ["fetchTodo", "deleteTodo"]),
-  },
-
-  props: {
-    
-=======
         this.createTodo({
           name: this.newTodo, 
           completed: 0, 
@@ -69,16 +57,28 @@ export default {
         this.newTodo = '';
       }
     },
-    ...mapActions("todolist", ["fetchTodo", "createTodo", "setCompleted"]),
-  },
 
-  watch: {
-    isCompleted: function () {}
->>>>>>> f52d71de74329fc739f2a17141d070ab9b9f87b9
+    ...mapActions("todolist", ["fetchTodo", "createTodo", "setCompleted", 'setFilter']),
+    ...mapActions('account', ['logout']),
   },
 
   computed:{
-    ...mapGetters("todolist", ["getTodolists", "getTodolist", "getCurrent"]),
+    ...mapGetters("todolist", ["getTodolists", "getTodolist", "getCurrent", "getFilter"]),
+
+    filter: function () {
+      let todolist = this.getTodolist;
+      let fltr = this.getFilter;
+      if(fltr != "all") {
+        let tmp = [];
+        for(let todo of todolist) {
+          if((todo.completed && fltr == 'done') || (!todo.completed && fltr == 'todo')) {
+            tmp.push(todo);
+          } 
+        }
+        return tmp;
+      }
+      return todolist;
+    }
   },
 }
 </script>
@@ -96,11 +96,7 @@ export default {
     border-bottom: 1px rgb(212, 212, 212) solid;
   }
   
-<<<<<<< HEAD
-  #newTodo {
-=======
   .newTodo {
->>>>>>> f52d71de74329fc739f2a17141d070ab9b9f87b9
     width: 100%;
     border: none;
   }
@@ -131,5 +127,17 @@ export default {
   .btn label {
     cursor: pointer;
     width: 100%;
+  }
+
+  #filter {
+    display: flex;
+    direction: rtl;
+
+    transition-property: background;
+    transition-duration: .2s;
+  }
+
+  #filter div:hover {
+    background: rgb(235, 235, 235);
   }
 </style>
