@@ -14,6 +14,9 @@
       <div class="btn login-btn" @click="toLogin">
         <label>Se connecter</label>
       </div>
+      <div class="error">
+        {{ this.logError }}
+      </div>
     </div>    
 
     <div id="sign-up">
@@ -34,13 +37,16 @@
       <div class="btn login-btn" @click="toRegister">
         <label>S'inscrire</label>
       </div>
+      <div class="error">
+        {{ this.regError }}
+      </div>
     </div>
   </div>
 
 </template>
 
 <script>
-import{ mapGetters, mapActions } from 'vuex';
+import{ mapActions } from 'vuex';
 
 export default {
   name: 'Auth',
@@ -57,28 +63,30 @@ export default {
         email: '',
         password: '',
       },
+
+      logError: null,
+      regError: null,
     }
   },
 
   methods: {
+    // recupere action login register from store/account.actions.js
     ...mapActions("account", ["login", "register"]),
 
     
     async toLogin() {
       if(this.loginId.email != '' && this.loginId.password != ''){
-        await this.login(this.loginId);
+        const msg = await this.login(this.loginId);
+        this.logError = msg;        
       }
     },
     async toRegister() {
       if(this.signUp.name != '' && this.signUp.email != '' && this.signUp.password != ''){
-        await this.register(this.signUp);
+        const msg = await this.register(this.signUp);
+        this.regError = msg;
       }
     }
   },
-
-  computed: {
-    ...mapGetters('account', ["getToken"]),
-  }
 }
 </script>
 
@@ -114,5 +122,9 @@ export default {
 
   .login-btn:hover {
     background: rgb(202, 202, 202);
+  }
+
+  .error {
+    color: red;
   }
 </style>

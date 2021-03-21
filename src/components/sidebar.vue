@@ -38,6 +38,7 @@ export default {
       }
     },
 
+    //recupere actions from store/todolist/actions.js
     ...mapActions("todolist", ["fetchTodolist", "fetchTodos", "createTodolist", "deleteTodolist"]),
   },
 
@@ -46,6 +47,7 @@ export default {
   },
 
   computed: {
+    //recupere getters from store/todolist/getters.js
     ...mapGetters("todolist", ["getTodolists", "getCurrent"]),
   }
 }

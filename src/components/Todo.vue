@@ -23,7 +23,7 @@ export default {
   name: "Todo",
 
   props: {
-    todo: {type: Object},
+    todo: {type: Object}, // prop passé par le parent (dans TodoList.vue)
   },
 
   data () {
@@ -36,7 +36,7 @@ export default {
   },
 
   watch: {
-    completed: function (bool) {
+    completed: async function (bool) {
       // console.log("on entre dans la fonction");
       // console.log(bool);
       const data = {
@@ -46,12 +46,14 @@ export default {
         todolist_id: this.getCurrent,
       };
       // console.log("fonction setCompleted va etre exectuté");
-      this.setCompleted(data);
+      const result = await this.setCompleted(data);
+      console.log(result);
     },
 
   },
 
   methods: {
+    //recupere actions from store/todolist/actions.js
     ...mapActions("todolist", ['setCompleted', 'modifyTodo', 'deleteTodo']),
 
     toModify: function () {
@@ -66,13 +68,15 @@ export default {
         todolist_id: this.getCurrent,
       };
 
-      await this.modifyTodo(data).then(() => { 
-        this.toModify();
-      });
+      const result = await this.modifyTodo(data);
+      console.log(result);
+      this.toModify();
+      
     },
   },
 
   computed: {
+    //recupere getters from store/todolist/getters.js
     ...mapGetters('todolist', ["getCurrent", "getFilter"]),
   }
 }

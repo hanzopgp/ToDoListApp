@@ -58,11 +58,14 @@ export default {
       }
     },
 
+    //recupere actions from store/todolist/actions.js
+    //recupere actions from store/account/actions.js
     ...mapActions("todolist", ["fetchTodo", "createTodo", "setCompleted", 'setFilter']),
     ...mapActions('account', ['logout']),
   },
 
   computed:{
+    //recupere actions from store/todolist/getters.js
     ...mapGetters("todolist", ["getTodolists", "getTodolist", "getCurrent", "getFilter"]),
 
     filter: function () {
