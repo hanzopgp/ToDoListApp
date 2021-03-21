@@ -14,18 +14,18 @@
 ## Project architecture
 
 <pre><code>
-CalcANTLR/
+ToDoListApp/
 ├── src/
 │   	├── api/          (Contains the file setting up the api)
 │   	├── assets/       (Contains images and logos)
-│   	├── components/   
-│   	├── router/ 
-│   	├── store/
-│   	├── view/
-│   	├── App.vue
-│   	└── main.js
-├── public/	          
-├── README.md
+│   	├── components/   (Contains vue.js components)
+│   	├── router/       (Contains router files)
+│   	├── store/        (Contains the store of the app)
+│   	├── view/         (Contains)
+│   	├── App.vue       ()
+│   	└── main.js       ()
+├── public/	            (Contains the public files and index.html)
+├── README.md     
 └── Licence  
 </pre></code>
 
