@@ -16,8 +16,8 @@
 <pre><code>
 CalcANTLR/
 ├── src/
-│   	├── api/
-│   	├── assets/ 
+│   	├── api/          (Contains the file setting up the api)
+│   	├── assets/       (Contains images and logos)
 │   	├── components/   
 │   	├── router/ 
 │   	├── store/
@@ -49,7 +49,7 @@ CalcANTLR/
 
 ## Bonus features
 
--
+- Tailwind css design
 -
 -
 
