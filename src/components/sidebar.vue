@@ -2,7 +2,7 @@
   
   <ul id="list">
     <label for="">TodoLists</label>
-    <li class="nav" v-for="todolist in getTodolists" :key="todolist.id" @click="fetchTodos(todolist)">
+    <li class="nav" :id="`todolist_${todolist.id}`" v-for="todolist in getTodolists" :key="todolist.id" @click="displayTodos(todolist)">
       <label>{{todolist.name}}</label>
       <div class="btn delete-btn" @click="this.deleteTodolist(todolist.id)">
         <span></span>
@@ -29,6 +29,7 @@ export default {
   },
 
   methods: {
+
     add: async function () {
       if(this.name != ''){
         await this.createTodolist(this.name).then(() => {
@@ -36,6 +37,16 @@ export default {
           console.log(this.name)
         });
       }
+    },
+
+    displayTodos: function (todolist) {
+      const previus = document.querySelector('.selected');
+      if(null != previus) {
+        previus.classList.remove('selected');
+      }
+      this.fetchTodos(todolist);
+      const div = document.querySelector(`#todolist_${todolist.id}`);
+      div.classList.add('selected');
     },
 
     //recupere actions from store/todolist/actions.js
@@ -51,6 +62,7 @@ export default {
     ...mapGetters("todolist", ["getTodolists", "getCurrent"]),
   }
 }
+
 </script>
 
 <style>
@@ -74,5 +86,9 @@ export default {
 
   .nav label:hover {
     cursor: pointer;
+  }
+
+  .selected {
+    border-bottom: 2px black solid;
   }
 </style>
