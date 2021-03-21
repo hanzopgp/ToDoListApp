@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '@/api';
 
 // recupere les todos d'une todolist 
 export async function fetchTodos({commit}, todolist) {
