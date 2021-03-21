@@ -13,12 +13,15 @@
       
       <div></div>
     </div>
-    <li>
+    <li v-if="isSelected">
       <input type="text" name="newTodo" class="newTodo" v-model="newTodo" placeholder="Ex: Aller faire le projet d'App Mobile.">
       <div @click="add" class="btn">
         <label>Ajouter</label>
       </div>
     </li> 
+    <div style="margin-top: 50px; opacity: .5" v-else>
+      <label>Veuillez sélectionner une todolist pour y voir son contenu.</label>
+    </div>
     <li v-for="todo in this.filter" :key="todo.id">
       <todo :todo="todo"></todo>
     </li>
@@ -47,14 +50,17 @@ export default {
 
   methods: {
     
-    add: function () {
+    add: async function () {
       if(this.newTodo != ''){
-        this.createTodo({
+        const result = await this.createTodo({
           name: this.newTodo, 
           completed: 0, 
           todolist_id: this.getCurrent
         });
         this.newTodo = '';
+        if(result != '') {
+          alert(result);
+        }
       }
     },
 
@@ -81,6 +87,10 @@ export default {
         return tmp;
       }
       return todolist;
+    },
+
+    isSelected: function () {
+      return this.getCurrent != 0;
     }
   },
 }

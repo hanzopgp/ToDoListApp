@@ -32,19 +32,23 @@ export default {
 
     add: async function () {
       if(this.name != ''){
-        await this.createTodolist(this.name).then(() => {
-          this.name = '';
-          console.log(this.name)
-        });
+        let result = await this.createTodolist(this.name);
+        this.name = '';
+        if(result != '') {
+          alert(result);
+        }
       }
     },
 
-    displayTodos: function (todolist) {
+    displayTodos: async  function (todolist) {
       const previus = document.querySelector('.selected');
       if(null != previus) {
         previus.classList.remove('selected');
       }
-      this.fetchTodos(todolist);
+      const result = await this.fetchTodos(todolist);
+      if(result != '') {
+        alert(result);
+      }
       const div = document.querySelector(`#todolist_${todolist.id}`);
       div.classList.add('selected');
     },
@@ -53,8 +57,11 @@ export default {
     ...mapActions("todolist", ["fetchTodolist", "fetchTodos", "createTodolist", "deleteTodolist"]),
   },
 
-  mounted() {
-    this.fetchTodolist();
+  async mounted() {
+    const result = await this.fetchTodolist();
+    if(result != '') {
+      alert(result);
+    }
   },
 
   computed: {

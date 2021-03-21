@@ -11,15 +11,15 @@ export async function login({commit}, id) {
 
   let msg = '';
 
-  await axios.post("http://138.68.74.39/api/login", {email: email, password: password}).then((response) => {
+  try {
+    let response = await axios.post("login", {email, password});
     const token = response.data.token;
     localStorage.setItem('token', token);
     commit("setToken", token);
     router.push("/"); 
-  }).catch((err) => {
+  } catch (err) {
     msg = "Erreur: L'identifiant ou le mot de passe est incorrect. Status : " + err.response.status;
-  });
-
+  }
   return msg;
 }
 
@@ -31,19 +31,15 @@ export async function register({commit}, id) {
 
   let msg = '';
 
-  await axios.post("http://138.68.74.39/api/register", {name: name, email: email, password: password}).then((response) => {
+  try {
+    let response = await axios.post("register", {name, email, password});
     const token = response.data.token;
     localStorage.setItem('token', token);
     commit("setToken", token);
     router.push("/"); 
-  }).catch((err) => {
-    const status = err.response.status;
-    if(status == 409) {
-      msg = "Erreur : L'adresse email est déjà utilisée (status : " + err.response.status + ").";
-    }
-    
-  });
-
+  } catch (err) {
+    msg = "Erreur : L'adresse email est déjà utilisée (status : " + err.response.status + ").";
+  }
   return msg;
 }
 
