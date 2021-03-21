@@ -4,6 +4,8 @@ import axios from "axios";
 import store from "./store/";
 import router from './router';
 
+import './assets/index.css'
+
 const app = createApp(App); 
 
 app.config.globalProperties.axios = axios; 

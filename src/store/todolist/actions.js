@@ -35,7 +35,7 @@ export async function createTodolist({commit}, title) {
   let msg = '';
 
   try {
-    let response = await axios.post("todolist",{todolistName});
+    let response = await axios.post("todolist", {todolistName});
     commit('addTodolist', response.data);
   } catch(err) {
     msg = "Une erreur est survenu lors de la création de la todolist. Status : " + err.response.status;

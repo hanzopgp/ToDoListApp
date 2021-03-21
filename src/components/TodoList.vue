@@ -1,13 +1,13 @@
 <template>
   <ul id="todolist">
-    <div id="filter">
-      <div class="btn" v-on:click="setFilter('todo')">
-        <label>Todo</label>
-      </div>
-      <div class="btn" v-on:click="setFilter('done')">
+    <div class="w-full flex flex-row-reverse">
+      <div class="btn rounded-lg" v-on:click="setFilter('done')">
         <label>Done</label>
       </div>
-      <div class="btn" v-on:click="setFilter('all')">
+      <div class="btn rounded-lg" v-on:click="setFilter('todo')">
+        <label>Todo</label>
+      </div>
+       <div class="btn rounded-lg" v-on:click="setFilter('all')">
         <label>All</label>
       </div>
       
@@ -15,7 +15,7 @@
     </div>
     <li v-if="isSelected">
       <input type="text" name="newTodo" class="newTodo" v-model="newTodo" placeholder="Ex: Aller faire le projet d'App Mobile.">
-      <div @click="add" class="btn">
+      <div @click="add" class="btn rounded-lg">
         <label>Ajouter</label>
       </div>
     </li> 
@@ -121,7 +121,6 @@ export default {
   .btn {
     width: 100px;
     cursor: pointer;
-    border-radius: 5px;
     padding: 5px;
     transition-property: background, color;
     transition-duration: .2s;

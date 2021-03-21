@@ -2,12 +2,14 @@
   
   <ul id="list">
     <label for="">TodoLists</label>
-    <li class="nav" :id="`todolist_${todolist.id}`" v-for="todolist in getTodolists" :key="todolist.id" @click="displayTodos(todolist)">
+    <li class="" :id="`todolist_${todolist.id}`" v-for="todolist in getTodolists" :key="todolist.id" @click="displayTodos(todolist)">
       <label>{{todolist.name}}</label>
-      <div class="btn delete-btn" @click="this.deleteTodolist(todolist.id)">
-        <span></span>
-        <span id="span-mirror"></span>
-      </div>
+
+      <div class="rounded-lg cursor-pointer p-2 text-opacity-30 opacity-30 hover:opacity-100" @click="this.deleteTodolist(todolist.id)">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="15">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+      </svg>
+    </div>
     </li>
     <li>
       <input type="text" v-model="this.name">
@@ -73,26 +75,9 @@ export default {
 </script>
 
 <style>
-  #list {
-    max-width: 20%;
-  }
 
   #list label {
     text-align: start;
-  }
-
-  .nav {
-    padding: 10px;
-    text-align: center;
-  }
-
-  .nav:hover {
-    background: rgb(247, 247, 247);
-    cursor: pointer;
-  }
-
-  .nav label:hover {
-    cursor: pointer;
   }
 
   .selected {
