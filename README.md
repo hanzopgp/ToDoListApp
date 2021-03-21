@@ -21,9 +21,9 @@ ToDoListApp/
 │   	├── components/   (Contains vue.js components)
 │   	├── router/       (Contains router files)
 │   	├── store/        (Contains the store of the app)
-│   	├── view/         (Contains)
-│   	├── App.vue       ()
-│   	└── main.js       ()
+│   	├── view/         (Contains view files)
+│   	├── App.vue       (Main vue.js file)
+│   	└── main.js       (Main js file)
 ├── public/	            (Contains the public files and index.html)
 ├── README.md     
 └── Licence  
