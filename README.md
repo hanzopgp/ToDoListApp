@@ -24,7 +24,7 @@ ToDoListApp/
 │   	├── view/         (Contains view files)
 │   	├── App.vue       (Main vue.js file)
 │   	└── main.js       (Main js file)
-├── public/	            (Contains the public files and index.html)
+├── public/	          (Contains the public files and index.html)
 ├── README.md     
 └── Licence  
 </pre></code>
