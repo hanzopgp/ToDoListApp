@@ -1,6 +1,9 @@
 <template>
-  <div id="app" class="login">
-    <div id="login">
+  <div id="title" class="absolute text-white left-1/2 text-5xl">
+    <label>"Todolost App".</label>
+  </div>
+  <div id="app" class="flex w-full h-full">
+    <div id="login" class="bg-white p-5 rounded-lg">
       <h1>CONNEXION</h1>
       <div>
         <label for="email">Email :</label>
@@ -11,7 +14,7 @@
         <br>
         <input type="password" name="password" v-model="loginId.password">
       </div>
-      <div class="btn login-btn" @click="toLogin">
+      <div class="btn login-btn rounded-lg bg-purple-50" @click="toLogin">
         <label>Se connecter</label>
       </div>
       <div class="error">
@@ -19,7 +22,7 @@
       </div>
     </div>    
 
-    <div id="sign-up">
+    <div id="sign-up" class="bg-white p-5 rounded-lg">
       <h1>INSCRIPTION</h1>
       <div>
         <label for="name">Nom :</label>
@@ -34,7 +37,7 @@
         <br>
         <input type="password" name="password" v-model="signUp.password">
       </div>
-      <div class="btn login-btn" @click="toRegister">
+      <div class="btn login-btn rounded-lg  bg-purple-50" @click="toRegister">
         <label>S'inscrire</label>
       </div>
       <div class="error">
@@ -91,17 +94,16 @@ export default {
 </script>
 
 <style>
-  .login {
-    display: flex;
+  #title {
+    transform: translate(-50%);
+    margin-top: 50px;
   }
 
-  #login {
-    width: 100%;
-  }
-
-  #sign-up {
-    width: 100%;
-    border-left: 1px black solid;
+  #login, #sign-up {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: auto;
+    margin-left: auto;
   }
 
   #login input, #sign-up input {
@@ -111,7 +113,7 @@ export default {
   }
 
   .login-btn {
-    background: rgb(236, 236, 236);
+    /* background: rgb(236, 236, 236); */
     width: 200px;
     margin-left: 50%;
     transform: translate(-50%);

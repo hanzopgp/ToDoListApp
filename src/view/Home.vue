@@ -1,11 +1,14 @@
 <template>
 
-  <div class="flex">
+  <div class="flex relative">
     <div class="w-1/4 transition-all" id="menu">
+
+    </div>
+    <div class="w-1/4 absolute z-10" >
       <sidebar class="p-3"></sidebar>
     </div>
-    <div class="w-3/4 transition-all bg-white" id="content">
-      <div class="bg-gray-200 p-1 flex justify-between">
+    <div class="w-3/4 transition-all bg-white z-50 h-screen overflow-scroll" id="content">
+      <div class="bg-gray-200 p-1 flex justify-between w-3/4 transition-all fixed" id="bar">
         <div class="p-2 cursor-pointer" v-on:click="menu">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 20 20">
             <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/>
@@ -53,15 +56,16 @@ export default {
     menu: function () {
       const menu = document.querySelector('#menu');
       const content = document.querySelector('#content');
+      const bar = document.querySelector("#bar");
 
       if(content.classList.contains('w-3/4')){
         menu.classList.replace('w-1/4', 'w-0');
-        menu.classList.add('invisible');
         content.classList.replace('w-3/4', 'w-full');
+        bar.classList.replace('w-3/4', 'w-full');
       } else {
         menu.classList.replace('w-0', 'w-1/4');
-        menu.classList.remove('invisible');
         content.classList.replace('w-full', 'w-3/4');
+        bar.classList.replace('w-full', 'w-3/4');
       }
     },
   }
@@ -73,6 +77,10 @@ export default {
 
   #logout-btn:hover {
     background: red;
+  }
+
+  .home {
+    margin-top: 70px;
   }
 
   #sidebar {

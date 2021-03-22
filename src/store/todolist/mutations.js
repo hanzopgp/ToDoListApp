@@ -20,7 +20,6 @@ export function addTodolist(state, todolist) {
 
 export function setCompleted(state, todo_data) {
   const todo = state.todos.find(todo => todo.id == todo_data.id);
-  console.log(todo);
   todo.completed = todo_data.completed;
 }
 

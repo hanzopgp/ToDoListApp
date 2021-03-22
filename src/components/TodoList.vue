@@ -1,17 +1,21 @@
 <template>
   <ul id="todolist">
-    <div class="w-full flex flex-row-reverse">
-      <div class="btn rounded-lg" v-on:click="setFilter('done')">
-        <label>Done</label>
+    <div class="w-full flex justify-between">
+      <div class="text-gray-300">
+        <label v-if="isSelected">Il reste {{ remaining }} todo(s) à faire.</label>
       </div>
-      <div class="btn rounded-lg" v-on:click="setFilter('todo')">
-        <label>Todo</label>
+      <div class="flex">  
+        <div :class="{selected: this.getFilter === 'all'}" class="btn" v-on:click="setFilter('all')">
+          <label>All</label>
+        </div>      
+        <div :class="{selected: this.getFilter === 'todo'}" class="btn" v-on:click="setFilter('todo')">
+          <label>Todo</label>
+        </div>
+        <div :class="{selected: this.getFilter === 'done'}" class="btn" v-on:click="setFilter('done')">
+          <label>Done</label>
+        </div>
+
       </div>
-       <div class="btn rounded-lg" v-on:click="setFilter('all')">
-        <label>All</label>
-      </div>
-      
-      <div></div>
     </div>
     <li v-if="isSelected">
       <input type="text" name="newTodo" class="newTodo" v-model="newTodo" placeholder="Ex: Aller faire le projet d'App Mobile.">
@@ -76,17 +80,17 @@ export default {
 
     filter: function () {
       let todolist = this.getTodolist;
-      let fltr = this.getFilter;
-      if(fltr != "all") {
-        let tmp = [];
-        for(let todo of todolist) {
-          if((todo.completed && fltr == 'done') || (!todo.completed && fltr == 'todo')) {
-            tmp.push(todo);
-          } 
-        }
-        return tmp;
+      const fltr = this.getFilter;
+      if(fltr === "done") {
+        return todolist.filter(todo => todo.completed);
+      } else if (fltr === "todo") {
+        return todolist.filter(todo => !todo.completed);
       }
       return todolist;
+    },
+
+    remaining () {
+      return this.getTodolist.filter(todo => !todo.completed).length;
     },
 
     isSelected: function () {
@@ -99,7 +103,11 @@ export default {
 <style>
   #todolist {
     width: 100%;
-  }
+  } 
+
+  .selected {
+    border-bottom: 2px black solid;
+  }  
 
   li {
     list-style-type: none;
@@ -125,31 +133,9 @@ export default {
     transition-property: background, color;
     transition-duration: .2s;
   }
-
-  .modify-btn {
-    background: rgb(255, 213, 159);
-    color: white;
-    
-  }
-
-  .modify-btn:hover{
-    background: rgb(255, 166, 0);
-  }
   
   .btn label {
     cursor: pointer;
     width: 100%;
-  }
-
-  #filter {
-    display: flex;
-    direction: rtl;
-
-    transition-property: background;
-    transition-duration: .2s;
-  }
-
-  #filter div:hover {
-    background: rgb(235, 235, 235);
   }
 </style>

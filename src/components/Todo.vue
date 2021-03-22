@@ -14,8 +14,10 @@
       </svg>
     </div>
   </div>
-  <div class="btn valid-btn rounded-lg" v-else @click="modify">
-    <label>Valider</label>
+  <div class="p-1 cursor-pointer opacity-60 hover:opacity-100 hover:text-green-600" v-else @click="modify">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="23" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+    </svg>
   </div>
 </template>
 
