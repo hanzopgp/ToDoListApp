@@ -41,7 +41,3 @@ export function deleteTodo(state, id) {
 export function setCurrent(state, index) {
   state.current = index;
 }
-
-export function setFilter(state, type) {
-  state.filter = type;
-}

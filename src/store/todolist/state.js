@@ -3,6 +3,5 @@ export default function () {
     todolists: [],
     todos: [],
     current: 0,
-    filter: 'all',
   };
 }

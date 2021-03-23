@@ -10,7 +10,3 @@ export const getTodolist = (state) => {
 export const getCurrent = (state) => {
   return state.current;
 }
-
-export const getFilter = (state) => {
-  return state.filter;
-}

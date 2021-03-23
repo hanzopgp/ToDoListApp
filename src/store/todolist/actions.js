@@ -18,6 +18,10 @@ export async function fetchTodos({commit}, todolist) {
 
 // charge une todolist de l'api puis on la stock dans le state via mutations.js (avec commit)
 export async function fetchTodolist({commit}) {
+  
+  commit("setTodos", '');
+  commit("setCurrent", 0);
+
   let msg = '';
   try {
     let response = await axios.get("todolists");
@@ -121,10 +125,6 @@ export async function deleteTodo({commit}, id) {
     msg = "Une erreur est survenu lors de la creation de la suppression de la todo. Status : " + err.response.status;
   }
   return msg;
-}
-
-export function setFilter({commit}, type) {
-  commit('setFilter', type);
 }
 
 export function setCurrent({commit}, current) {

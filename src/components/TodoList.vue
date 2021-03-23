@@ -5,13 +5,13 @@
         <label v-if="isSelected">Il reste {{ remaining }} todo(s) à faire.</label>
       </div>
       <div class="flex">  
-        <div :class="{selected: this.getFilter === 'all'}" class="btn" v-on:click="setFilter('all')">
+        <div :class="{selected: this.filter === 'all'}" class="btn" v-on:click="setFilter('all')">
           <label>All</label>
         </div>      
-        <div :class="{selected: this.getFilter === 'todo'}" class="btn" v-on:click="setFilter('todo')">
+        <div :class="{selected: this.filter === 'todo'}" class="btn" v-on:click="setFilter('todo')">
           <label>Todo</label>
         </div>
-        <div :class="{selected: this.getFilter === 'done'}" class="btn" v-on:click="setFilter('done')">
+        <div :class="{selected: this.filter === 'done'}" class="btn" v-on:click="setFilter('done')">
           <label>Done</label>
         </div>
 
@@ -26,7 +26,7 @@
     <div style="margin-top: 50px; opacity: .5" v-else>
       <label>Veuillez sélectionner une todolist pour y voir son contenu.</label>
     </div>
-    <li v-for="todo in this.filter" :key="todo.id">
+    <li v-for="todo in this.todosByfilter" :key="todo.id">
       <todo :todo="todo"></todo>
     </li>
   </ul>
@@ -49,6 +49,7 @@ export default {
   data() {
     return {
       newTodo: '',
+      filter: 'all',
     }
   },
 
@@ -68,22 +69,27 @@ export default {
       }
     },
 
+    setFilter: function (type) {
+      this.filter = type;
+    },
+
     //recupere actions from store/todolist/actions.js
     //recupere actions from store/account/actions.js
-    ...mapActions("todolist", ["fetchTodo", "createTodo", "setCompleted", 'setFilter']),
+    ...mapActions("todolist", ["createTodo", "setCompleted"]),
     ...mapActions('account', ['logout']),
   },
 
   computed:{
     //recupere actions from store/todolist/getters.js
-    ...mapGetters("todolist", ["getTodolists", "getTodolist", "getCurrent", "getFilter"]),
+    ...mapGetters("todolist", ["getTodolist", "getCurrent"]),
 
-    filter: function () {
+    todosByfilter: function () {
       let todolist = this.getTodolist;
-      const fltr = this.getFilter;
-      if(fltr === "done") {
+      
+      if(this.filter === "done") {
+        
         return todolist.filter(todo => todo.completed);
-      } else if (fltr === "todo") {
+      } else if (this.filter === "todo") {
         return todolist.filter(todo => !todo.completed);
       }
       return todolist;
