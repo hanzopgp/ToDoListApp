@@ -18,7 +18,7 @@
       </div>
     </div>
     <li v-if="isSelected">
-      <input type="text" name="newTodo" class="newTodo" v-model="newTodo" placeholder="Ex: Aller faire le projet d'App Mobile.">
+      <input type="text" name="newTodo" class="newTodo" v-on:keyup="toAdd" v-model="newTodo" placeholder="Ex: Aller faire le projet d'App Mobile.">
       <div @click="add" class="btn rounded-lg">
         <label>Ajouter</label>
       </div>
@@ -54,6 +54,12 @@ export default {
   },
 
   methods: {
+
+    toAdd: function (event) {
+      if(event.key == 'Enter'){
+        this.add();
+      }
+    },
     
     add: async function () {
       if(this.newTodo != ''){
