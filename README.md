@@ -18,11 +18,18 @@ TodolistApp/
 ├── public/	
 ├── src/
 │    ├── api/
+│    │	  └── index.js
 │    ├── assets/
 │    ├── components/	
 │    ├── router/
+│    │     └── index.js
 │    ├── store/
-│    ├── view/	 
+│    │     ├── account/
+│    │     ├── todolist/
+│    │     └── index.js
+│    ├── view/	
+│    │	   ├── login.vue
+│    │     └── Home.vue
 │    ├── App.vue
 │    └── main.js		   	
 ├── README.md		          
