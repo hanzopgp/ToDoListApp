@@ -14,7 +14,6 @@
         <div :class="{selected: this.filter === 'done'}" class="btn" v-on:click="setFilter('done')">
           <label>Done</label>
         </div>
-
       </div>
     </div>
     <li v-if="isSelected">
@@ -61,6 +60,10 @@ export default {
       }
     },
     
+    test(event) {
+      console.log(event);
+    },
+
     add: async function () {
       if(this.newTodo != ''){
         const result = await this.createTodo({
