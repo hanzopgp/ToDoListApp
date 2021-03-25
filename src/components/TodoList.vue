@@ -1,5 +1,8 @@
 <template>
   <ul id="todolist">
+    <div>
+      <input type="search" name="" id="" placeholder="Search">
+    </div>
     <div class="w-full flex justify-between">
       <div class="text-gray-300">
         <label v-if="isSelected">Il reste {{ remaining }} todo(s) à faire.</label>
