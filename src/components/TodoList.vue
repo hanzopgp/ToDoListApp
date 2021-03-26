@@ -1,7 +1,7 @@
 <template>
   <ul id="todolist">
     <div>
-      <input type="search" name="" id="" placeholder="Search">
+      <input class="float-left w-full p-2" type="search" id="search" v-model="search" name="search" placeholder="Search">
     </div>
     <div class="w-full flex justify-between">
       <div class="text-gray-300">
@@ -52,6 +52,7 @@ export default {
     return {
       newTodo: '',
       filter: 'all',
+      search: '',
     }
   },
 
@@ -63,8 +64,12 @@ export default {
       }
     },
     
-    test(event) {
-      console.log(event);
+    getSearch: function (todolist) {
+      if(this.search != ''){
+        const searchTodos = todolist.filter(todo => (todo.name.search(this.search) > -1));
+        return searchTodos;
+      }
+      return todolist;
     },
 
     add: async function () {
@@ -97,14 +102,13 @@ export default {
 
     todosByfilter: function () {
       let todolist = this.getTodolist;
-      
-      if(this.filter === "done") {
-        
-        return todolist.filter(todo => todo.completed);
+      if(this.filter === "done") {     
+        return this.getSearch(todolist).filter(todo => todo.completed);
       } else if (this.filter === "todo") {
-        return todolist.filter(todo => !todo.completed);
+        return this.getSearch(todolist).filter(todo => !todo.completed);
       }
-      return todolist;
+      
+      return this.getSearch(todolist);
     },
 
     remaining () {
@@ -122,6 +126,10 @@ export default {
   #todolist {
     width: 100%;
   } 
+
+  #search {
+    border-bottom: 1px grey solid;
+  }
 
   .selected {
     border-bottom: 2px black solid;
